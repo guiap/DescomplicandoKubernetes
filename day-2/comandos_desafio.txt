@@ -1,0 +1,22 @@
+# Criar namespace
+kubectl create namespace treinamento-ch2
+
+# Criar o arquivo já pré-configurado
+kubectl run girus-1 --image=polinux/stress --namespace=treinamento-ch2 --dry-run=client -o yaml > desafio2.yaml
+
+# Editar para ajustar aos requisitos do desafio
+
+# Criar o pod a partir do arquivo
+
+kubectl apply -f desafio2.yaml
+k get pods -n treinamento-ch2
+k logs pod-faminto -n treinamento-ch2 -c pod-faminto
+
+# copiar para um novo arquivo e editar como pode compartado ajustando os limites
+
+cp -rf desafio2.yaml desafio2-comportado.yaml
+
+kubectl apply -f desafio2-comportado.yaml
+k get pods -n treinamento-ch2
+kubectl get pod -n treinamento-ch2 -w
+kubectl describe pod pod-comportado -n treinamento-ch2
